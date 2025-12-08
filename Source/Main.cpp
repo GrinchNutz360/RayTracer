@@ -3,6 +3,7 @@
 #include <glm/glm.hpp>
 #include "Renderer.h"
 #include "Framebuffer.h"
+#include "Camera.h"
 
 int main() {
 	constexpr int SCREEN_WIDTH = 800;
@@ -40,5 +41,11 @@ int main() {
 		// copy frame buffer texture to renderer to display
 		renderer.CopyFramebuffer(framebuffer);
 		renderer.Show();
+
+		Framebuffer framebuffer(renderer, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		float aspectRatio = (float)framebuffer.width / (float)framebuffer.height;//framebuffer width divided by framebuffer height (float division)
+		Camera camera(70.0f, aspectRatio);
+		camera.SetView({ 0, 0, 5 }, { 0, 0, 0 });
 	}
 }
