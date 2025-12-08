@@ -47,10 +47,13 @@ color3_t Scene::Trace(const ray_t& ray, float minDistance, float maxDistance, ra
 		}
 	}
 
+	// REALLY COOL COMMENTED STUFF HERE!!!
 	// check if ray hit object
 	if (rayHit) {
 		// get material color of hit object
 		color3_t color = raycastHit.color;
+		//color3_t color = raycastHit.normal;
+		//color3_t color = glm::vec3{ raycastHit.distance * 0.1f };
 		return color;
 	}
 
