@@ -1,6 +1,9 @@
 #pragma once
 
+#define GLM_ENABLE_EXPERIMENTAL
+
 #include <glm/glm.hpp>
+#include <glm/gtx/norm.hpp>
 #include <glm/gtc/constants.hpp>
 #include <cstdlib>
 #include <random>
@@ -141,5 +144,15 @@ namespace random {
         // Convert polar coordinates to Cartesian coordinates
         // cos(?) gives x-component, sin(?) gives y-component
         return glm::vec2{ std::cos(radians), std::sin(radians) };
+    }
+    inline glm::vec3 inUnitSphere() {
+        glm::vec3 v;
+        do {
+            v = getReal(glm::vec3{ -1 }, glm::vec3{ -1 });
+        } while (glm::length2(v) > 1.0);
+    }
+
+    inline glm::vec3 onUnitSphere() {
+        return glm::normalize(inUnitSphere());
     }
 }
